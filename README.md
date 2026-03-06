@@ -92,3 +92,6 @@ I may already have a working firmware build for your hardware.
 This project is for **research and experimental development purposes only**.
 
 Running alternative firmware on Pixhawk hardware may require advanced knowledge of flight controllers and embedded systems.
+If you wish to obtain technical support, please contact me
+telegram：@zaqm88
+email：luhaoy2023@gmail.com
