@@ -1,97 +1,165 @@
 # Betaflight Pixhawk Compatibility List
 
-This repository tracks **Pixhawk-style flight controllers that can potentially run Betaflight firmware**.
+Overview
 
-While Betaflight is traditionally used on FPV flight controllers, many modern **Pixhawk-compatible boards share similar STM32 microcontrollers and hardware architectures**, which makes experimental Betaflight firmware builds possible.
+This repository tracks Pixhawk-style flight controllers that can run or be adapted to run Betaflight firmware.
 
-The goal of this project is to maintain a **community-driven compatibility list for Pixhawk hardware running Betaflight**.
+Although Betaflight is traditionally designed for FPV flight controllers, many modern Pixhawk-compatible boards share similar STM32 MCU architectures, making experimental Betaflight builds possible.
 
-## Why Run Betaflight on Pixhawk Hardware?
+The goal of this project is to document:
 
-Pixhawk flight controllers are widely used in UAV research and autonomous systems, while **Betaflight provides extremely fast control loops and powerful tuning tools for FPV drones**.
+Compatible Pixhawk-style flight controllers
 
-Combining these two ecosystems can be useful for:
+Hardware configurations
 
-- High-performance FPV drones
-- Custom UAV platforms
-- Experimental flight control research
-- Drone developers exploring alternative firmware
+Sensor compatibility
 
-## Known Pixhawk-Compatible Flight Controllers
+Experimental Betaflight firmware builds
 
-### H7 Based Boards
+This information may be useful for UAV developers, FPV builders and embedded engineers exploring alternative firmware platforms.
 
-| Flight Controller | MCU | Status | Notes |
-|---|---|---|---|
-| Kakute H7 | STM32H743 | Tested | Stable Betaflight builds available |
-| Matek H743 | STM32H743 | Experimental | Hardware compatible |
-| CUAV X7 | STM32H743 | Unknown | Requires firmware port |
+Hardware Overview
 
-### F7 Based Boards
+Several modern Pixhawk-style flight controllers share similar hardware architectures:
 
-| Flight Controller | MCU | Status | Notes |
-|---|---|---|---|
-| Kakute F722 | STM32F722 | Tested | Compatible with custom builds |
-| Matek F722 | STM32F722 | Experimental | Peripheral configuration needed |
+MCU
 
-### F4 Based Boards
+Typical processors include:
 
-| Flight Controller | MCU | Status | Notes |
-|---|---|---|---|
-| Kakute F4 V2.4 | STM32F405 | Tested | Works with Betaflight builds |
-| Matek F405 | STM32F405 | Experimental | UART mapping required |
+STM32F405
 
-## Hardware Features Relevant to Betaflight
+STM32F722
 
-- STM32 F4 / F7 / H7 microcontrollers
-- Multiple UART ports
-- Onboard OSD
-- Blackbox logging (Dataflash or MicroSD)
-- SPI gyroscopes (MPU6000 / ICM42688)
-- 3S–8S battery input support
-- ESC PWM / DShot outputs
+STM32H743 (H7 series)
 
-## Current Development Focus
+For example, the Holybro Kakute H7 Flight Controller uses:
 
-Currently experimenting with Betaflight builds on:
+STM32H743 MCU
 
-- Kakute H7 (STM32H743)
-- Kakute F722
-- Kakute F4 V2.4
+Running up to 480MHz
 
-Testing includes:
+Significantly higher performance than typical F4/F7 controllers
 
-- flight stability
-- peripheral compatibility
-- UART device support
-- Blackbox logging
-- FPV OSD telemetry
+IMU Sensor
 
-## Community Contributions
+Flight performance is heavily dependent on the IMU (Inertial Measurement Unit).
 
-If you have tested Betaflight on any **Pixhawk-style flight controller**, feel free to contribute:
+Example configuration from the Kakute H7 hardware:
 
-- open a Pull Request
-- open an Issue
-- share test results
+IMU:
+CM-42688-P
 
-## Firmware Builds
+Features:
 
-Some **experimental Betaflight firmware builds for Pixhawk hardware** are currently being tested.
+High-performance 6-axis IMU
 
-If you are working with similar flight controllers and want to try running Betaflight on them, feel free to:
+Low noise gyro and accelerometer
 
-- open an **Issue**
-- start a **Discussion**
-- or contact the repository maintainer.
+High sampling rate suitable for FPV control loops
 
-I may already have a working firmware build for your hardware.
+Widely supported in modern Betaflight firmware
 
-## Disclaimer
+The CM-42688-P IMU provides stable gyro data even under high vibration environments typical in FPV drones.
 
-This project is for **research and experimental development purposes only**.
+Other Hardware Features
 
-Running alternative firmware on Pixhawk hardware may require advanced knowledge of flight controllers and embedded systems.
+Typical Pixhawk-style Betaflight capable boards include:
+
+Multiple UART interfaces (often 6+)
+
+I2C interface for GPS / magnetometer
+
+OSD chip (AT7456E)
+
+Blackbox logging via MicroSD
+
+ESC output for up to 8 motors
+
+3S–8S battery input support
+
+Built-in BEC regulators
+
+These features make them highly flexible for both FPV drones and experimental UAV platforms.
+
+IMU Component Availability
+
+In recent years, sourcing IMU sensors has become an important issue for many flight controller manufacturers.
+
+Commonly used IMUs include:
+
+MPU6000
+
+ICM42688
+
+BMI270
+
+However, supply chain fluctuations and EOL status of some sensors have pushed many developers to explore alternative IMU solutions.
+
+Some projects are currently evaluating compatible IMU alternatives that can replace commonly used sensors while maintaining Betaflight performance.
+
+These alternatives may include domestic or regionally manufactured IMU solutions suitable for flight control applications.
+
+Current Testing Hardware
+
+The following boards are currently under testing with Betaflight builds:
+
+Flight Controller	MCU	IMU	Status
+Kakute H7	STM32H743	CM-42688-P	Tested
+Kakute F722	STM32F722	MPU6000 / ICM42688	Testing
+Kakute F4 V2.4	STM32F405	MPU6000	Stable
+Experimental Betaflight Firmware
+
+Custom Betaflight builds are being tested for:
+
+STM32H7 flight controllers
+
+Pixhawk-style boards
+
+alternative IMU sensor configurations
+
+Testing focuses on:
+
+gyro stability
+
+PID loop performance
+
+sensor compatibility
+
+blackbox logging
+
+IMU Alternative Research
+
+Another focus of this project is evaluating compatible IMU replacements for flight controllers.
+
+Many developers and hardware teams are currently looking for:
+
+alternative IMU sources
+
+drop-in replacements for common sensors
+
+solutions compatible with existing Betaflight firmware
+
+Several IMU replacement solutions are currently under evaluation, including options designed to be compatible with common FPV flight controller hardware.
+
+If you are developing flight controllers, drone autopilots, or UAV hardware and are facing IMU supply issues, feel free to open a discussion.
+
+Community Contributions
+
+Contributions are welcome.
+
+If you have experience running Betaflight on Pixhawk-style hardware, please feel free to:
+
+open an Issue
+
+submit a Pull Request
+
+share hardware test results
+
+Disclaimer
+
+This repository is intended for research and hardware experimentation.
+
+Running alternative firmware on Pixhawk-style hardware may require advanced knowledge of embedded systems and flight control tuning.
 If you wish to obtain technical support, please contact me
 telegram：@zaqm88
 email：luhaoy2023@gmail.com
