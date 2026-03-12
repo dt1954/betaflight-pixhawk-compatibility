@@ -149,8 +149,9 @@ If you have experience running Betaflight on Pixhawk-style hardware, please feel
 This repository is intended for research and hardware experimentation.
 
 Running alternative firmware on Pixhawk-style hardware may require advanced knowledge of embedded systems and flight control tuning.
-```
-
 If you wish to obtain technical support, please contact me
 telegram：@zaqm88
 email：luhaoy2023@gmail.com
+```
+
+
